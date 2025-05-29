@@ -98,44 +98,44 @@ function stopRecording(): void {
   }
 }
 
-function base64ToBlob(base64: string, mimeType: string): Blob {
-  const byteString = atob(base64.split(',')[1])
-  const ab = new ArrayBuffer(byteString.length)
-  const ia = new Uint8Array(ab)
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i)
-  }
-  return new Blob([ab], { type: mimeType })
-}
+// function base64ToBlob(base64: string, mimeType: string): Blob {
+//   const byteString = atob(base64.split(',')[1])
+//   const ab = new ArrayBuffer(byteString.length)
+//   const ia = new Uint8Array(ab)
+//   for (let i = 0; i < byteString.length; i++) {
+//     ia[i] = byteString.charCodeAt(i)
+//   }
+//   return new Blob([ab], { type: mimeType })
+// }
 
-async function sendAudioToChatbotAPI(audioBlob: Blob): Promise<{ text: string; audioBlob: Blob }> {
-  const formData = new FormData()
-  formData.append('audio', audioBlob, 'user-audio.webm')
+// async function sendAudioToChatbotAPI(audioBlob: Blob): Promise<{ text: string; audioBlob: Blob }> {
+//   const formData = new FormData()
+//   formData.append('audio', audioBlob, 'user-audio.webm')
 
-  try {
-    const response = await fetch('https://your-chatbot-api.example.com/voice-chat', {
-      method: 'POST',
-      body: formData,
-    })
+//   try {
+//     const response = await fetch('https://your-chatbot-api.example.com/voice-chat', {
+//       method: 'POST',
+//       body: formData,
+//     })
 
-    if (!response.ok) throw new Error('API error')
+//     if (!response.ok) throw new Error('API error')
 
-    // Expect JSON { text: string, audioBase64: string }
-    const data = await response.json()
+//     // Expect JSON { text: string, audioBase64: string }
+//     const data = await response.json()
 
-    // Convert base64 audio back to Blob (assuming 'audio/webm')
-    const audioBlobBot = base64ToBlob(data.audioBase64, 'audio/webm')
+//     // Convert base64 audio back to Blob (assuming 'audio/webm')
+//     const audioBlobBot = base64ToBlob(data.audioBase64, 'audio/webm')
 
-    return {
-      text: data.text,
-      audioBlob: audioBlobBot,
-    }
-  } catch (e) {
-    console.error('Chatbot API error:', e)
-    return {
-      text: 'Sorry, there was an error.',
-      audioBlob: new Blob(),
-    }
-  }
-}
+//     return {
+//       text: data.text,
+//       audioBlob: audioBlobBot,
+//     }
+//   } catch (e) {
+//     console.error('Chatbot API error:', e)
+//     return {
+//       text: 'Sorry, there was an error.',
+//       audioBlob: new Blob(),
+//     }
+//   }
+// }
 </script>

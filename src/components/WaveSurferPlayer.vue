@@ -40,7 +40,6 @@ onMounted(() => {
     waveColor: '#a0a0a0',
     progressColor: '#4caf50',
     height: 80,
-    responsive: true,
     normalize: true,
   })
 
