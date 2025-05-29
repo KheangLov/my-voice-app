@@ -51,11 +51,10 @@ function startArtyom(): void {
     })
     .then(() => {
       artyom.say("I'm listening, please speak")
+      artyom.redirectRecognizedTextOutput((text, isFinal) => {
+        transcript.value = text
+      })
     })
-
-  artyom.on('result', (text: string) => {
-    transcript.value = text
-  })
 }
 
 function stopArtyom(): void {
