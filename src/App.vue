@@ -51,7 +51,7 @@ function startArtyom(): void {
     })
     .then(() => {
       artyom.say("I'm listening, please speak")
-      artyom.redirectRecognizedTextOutput((text, isFinal) => {
+      artyom.redirectRecognizedTextOutput((text: string) => {
         transcript.value = text
       })
     })
